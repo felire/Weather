@@ -6,6 +6,6 @@ import Routes from '@constants/routes';
 i18next.addResources('es', 'app', {
   es: {
     [Routes.Login]: 'Login',
-    [Routes.Home]: 'Home'
+    [Routes.Home]: 'Buscador'
   }
 });

@@ -9,7 +9,8 @@ const InitialLoading = ({ navigation }) => {
   const initialLoading = useSelector(initialLoadingSelector);
   const currentUser = useSelector(state => state.auth.currentUser);
   if (!initialLoading) {
-navigation.navigate(currentUser ? Routes.App : Routes.Auth);  }
+    navigation.navigate(currentUser ? Routes.App : Routes.Auth);
+  }
   return null;
 };
 
@@ -22,4 +23,4 @@ InitialLoading.propTypes = {
   })
 };
 
-  export default withLoadable(() => useSelector(initialLoadingSelector))(InitialLoading);
+export default withLoadable(() => useSelector(initialLoadingSelector))(InitialLoading);

@@ -33,7 +33,7 @@ export function Login({ onLogin }) {
         green
         onPress={onLogin}
         style={styles.formButton}
-        title={i18next.t('LOGIN:LOGIN_MESSAGE', { name: 'Wolox' })}
+        title={i18next.t('LOGIN:LOGIN_MESSAGE', { name: 'Challenge' })}
         activeOpacity={0.7}
       />
     </View>

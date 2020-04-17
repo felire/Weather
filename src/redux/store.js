@@ -15,17 +15,19 @@ import {
 import Navigator from '@components/AppNavigator/navigator';
 
 import auth from './auth/reducer';
+import weather from './weather/reducer';
 
 const transformerConfig = {
   whitelistPerReducer: {
-    auth: ['currentUser']
+    auth: ['currentUser'],
+    weather: ['lastsSearchs']
   }
 };
 
 const persistConfig = {
   key: 'root',
   storage: AsyncStorage,
-  whitelist: ['auth'],
+  whitelist: ['auth', 'weather'],
   stateReconciler: seamlessImmutableReconciler,
   transforms: [seamlessImmutableTransformCreator(transformerConfig)]
 };
@@ -36,7 +38,8 @@ configureMergeState((state, diff) => state.merge(diff));
 
 const reducers = combineReducers({
   auth,
-  nav
+  nav,
+  weather
 });
 
 const persistedReducer = persistReducer(persistConfig, reducers);
@@ -52,7 +55,6 @@ middlewares.push(thunk);
 
 /* ------------- Redux-Recompose Middleware ------------- */
 middlewares.push(fetchMiddleware);
-
 
 /* ------------- Assemble Middleware ------------- */
 enhancers.push(applyMiddleware(...middlewares));

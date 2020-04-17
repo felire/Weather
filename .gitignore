@@ -60,6 +60,3 @@ buck-out/
 
 # History (vs code)
 .history
-
-# Env
-/*.env

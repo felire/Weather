@@ -2,6 +2,7 @@ import React, { useState, useCallback, useEffect, memo, useRef } from 'react';
 import { View, TextInput, Animated } from 'react-native';
 import CustomText from '@components/CustomText';
 import { transparent, gray, black } from '@constants/colors';
+import withForm from '@components/withForm';
 
 import ShowPassword from '../components/ShowPassword';
 
@@ -37,10 +38,10 @@ const AnimatedCustomTextInput = (props: AnimatedCustomTextInputProps) => {
     onBlur,
     onChange,
     autoCompleteType,
+    value,
     ...rest
   } = props;
   const [showPassword, setShowPassword] = useState(false);
-  const [value, setValue] = useState(initialValue);
   const [isFocused, setIsFocused] = useState(false);
   const animatedIsFocused = useRef(new Animated.Value(value ? 1 : 0)).current;
   useEffect(() => {
@@ -53,8 +54,6 @@ const AnimatedCustomTextInput = (props: AnimatedCustomTextInputProps) => {
   }, [animatedIsFocused, isFocused, value]);
 
   const handleShowPassword = useCallback(() => setShowPassword(prevShowPassword => !prevShowPassword), []);
-
-  const handleChange = (text: string) => setValue(text);
 
   const handleFocus = useCallback(
     e => {
@@ -114,7 +113,7 @@ const AnimatedCustomTextInput = (props: AnimatedCustomTextInputProps) => {
           {...rest}
           value={value}
           allowFontScaling={false}
-          onChangeText={onChange || handleChange}
+          onChangeText={onChange}
           onBlur={handleBlur}
           onFocus={handleFocus}
           style={[
@@ -159,4 +158,4 @@ AnimatedCustomTextInput.defaultProps = {
   underlineColorAndroid: transparent
 };
 
-export default memo(AnimatedCustomTextInput);
+export default withForm(memo(AnimatedCustomTextInput));

@@ -7,7 +7,8 @@ const BORDER_RADIUS = 10;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: green
+    backgroundColor: green,
+    paddingVertical: 30
   },
   pagination: {
     position: 'absolute',
